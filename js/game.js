@@ -26,7 +26,7 @@ function Board(size){
                 that.showMessage(true);
             }
             else{
-                that.computerMove();
+                that.computerMove(false);
             }
         }
     };
@@ -52,7 +52,7 @@ function Board(size){
     this.setup();
 
     if (!document.getElementById("form").children[0].checked){
-      that.computerMove();
+      that.computerMove(true);
     }
 
 
@@ -97,27 +97,41 @@ Board.prototype.updateBoardStatus = function(){
     this.legal = this.scoreCompute.legalMoves(this.board);
 }
 
-Board.prototype.computerMove = function(){
-    this.computerTurn = true;
-    var length = this.legal.length;
-    var best = -1000;
-    var position = null;
-    shuffleArray(this.legal);
-    for(var i=0; i < length; i++){
-        var pos = this.legal[i];
-        this.board.push(pos);
-        var score = this.scoreCompute.quickscore(this.board, false);
-        if (score > best){
-            best = score;
-            position = pos;
+Board.prototype.computerMove = function(random){
+    if (!random){
+        this.computerTurn = true;
+        var length = this.legal.length;
+        var best = -1000;
+        var position = null;
+        shuffleArray(this.legal);
+        for(var i=0; i < length; i++){
+            var pos = this.legal[i];
+            this.board.push(pos);
+            var score = this.scoreCompute.quickscore(this.board, false);
+            if (score > best){
+                best = score;
+                position = pos;
+            }
+            this.board.pop();
         }
-        this.board.pop();
+        this.placeQueen(this.getDiv(position), true);
+        this.updateBoardStatus();
+        this.computerTurn = false;
+        if (this.legal.length == 0){
+            this.showMessage(false);
+        }
     }
-    this.placeQueen(this.getDiv(position), true);
-    this.updateBoardStatus();
-    this.computerTurn = false;
-    if (this.legal.length == 0){
-        this.showMessage(false);
+    else{
+        this.computerTurn = true;
+        var length = this.legal.length;
+        var randomId = parseInt(Math.random() * length);
+        position = this.legal[randomId];
+        this.placeQueen(this.getDiv(position), true);
+        this.updateBoardStatus();
+        this.computerTurn = false;
+        if (this.legal.length == 0){
+            this.showMessage(false);
+        }
     }
 }
 
