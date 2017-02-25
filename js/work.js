@@ -1,5 +1,6 @@
-function ScoreCompute(boardSize){
+function ScoreCompute(boardSize, lastWin){
     this.boardSize = boardSize;
+    this.lastWin = lastWin;
 
     this.legalMoves = function(queens){
         var total = queens.length;
@@ -92,10 +93,16 @@ function ScoreCompute(boardSize){
         var total = legals.length;
         if (total == 0){
             if (maxPlayer){
-                return -1;
+                if (lastWin)
+                    return -1;
+                else
+                    return 1;
             }
             else{
-                return 1;
+                if (lastWin)
+                    return 1;
+                else
+                    return -1;
             }
         }
         if (maxPlayer){
@@ -116,41 +123,6 @@ function ScoreCompute(boardSize){
                 //queens.push(queen);
                 var v = score2(legals, queen, true);
                 //queens.pop();
-                best = Math.min(best, v);
-            }
-            return best;
-        }
-    }
-
-    this.score = function(queens, maxPlayer){
-        var legals = this.legalMoves(queens);
-        var total = legals.length;
-        if (total == 0){
-            if (maxPlayer){
-                return -1;
-            }
-            else{
-                return 1;
-            }
-        }
-        if (maxPlayer){
-            var best = -10000;
-            for( var i = 0 ; i < total ; i++){
-                queen = legals[i];
-                queens.push(queen);
-                var v = score(queens, false);
-                queens.pop();
-                best = Math.max(best, v);
-            }
-            return best;
-        }
-        else{
-            var best = 10000;
-            for( var i = 0 ; i < total ; i++){
-                queen = legals[i];
-                queens.push(queen);
-                var v = score(queens, true);
-                queens.pop();
                 best = Math.min(best, v);
             }
             return best;

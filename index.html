@@ -10,11 +10,16 @@
 <body>
 <div id="mainChessBoard">
 </div>
-<form id="form">
-    <input type="radio" name="gender" value="male" checked><div class="radio"> Black First</div>
-    <input type="radio" name="gender" value="female"><div class="radio">White First</div>
-</form> 
-<div class="radio">Size</div>
+<div class="radio">
+    <div class="floating-box">
+        <input id="firstMove" type="checkbox" name="checkbox" value="1" checked="checked"><label for="firstMove"><span>Black First</span></label>
+    </div>
+    <div class="floating-box">
+        <input id="lastWin" type="checkbox" name="checkbox" value="1" checked="checked"><label for="lastWin"><span>Last Queen Win</span></label>
+    </div>
+</div> 
+<div class="radio">
+<label for="boardSize"><span>Board Size</span></label>
 <select name="boardSize" id="boardSize">
     <option value="8">8</option>
     <option value="4">4</option>
@@ -23,6 +28,8 @@
     <option value="7">7</option>
     <option value="9">9</option>
 </select>
+</div>
+
 <div class="btn" id="button"> Restart </div>
 <div id="message"></div>
 <script src="js/work.js"></script>

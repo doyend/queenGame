@@ -44,20 +44,7 @@ img {
   text-decoration: none;
 }
 
-form {
-    width:500px;
-    border:1px solid black;
-}
-
-.radio {
-   height: 30px;
-   width: 100px;
-   font-size: 24px;
-   float:left;
-}
-
-
-input, select {
+input {
    font-family: Arial;
    height: 30px;
    width: 50px;
@@ -74,3 +61,48 @@ input, select {
     background-color: #efefef;
     text-align: center;
 }
+
+body{
+  margin      : 0;
+  padding     : 1.5em;
+  font-family : Georgia,Utopia,Charter,serif;
+}
+
+.radio{
+  margin-bottom : 1.5em;
+}
+
+input[type=checkbox]:not(old),
+input[type=radio   ]:not(old){
+  width   : 28px;
+  margin  : 0;
+  padding : 0;
+  opacity : 0;
+}
+
+input[type=checkbox]:not(old) + label,
+input[type=radio   ]:not(old) + label{
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  background   : url('checks.png') no-repeat 0 0;
+  line-height  : 24px;
+}
+
+input[type=checkbox]:not(old):checked + label{
+  background-position : 0 -24px;
+}
+
+input[type=radio]:not(old):checked + label{
+  background-position : 0 -48px;
+}
+
+.floating-box {
+    display: inline-block;
+    width: 150px;
+    height: 25px;
+    margin: 10px;
+    border: 3px solid #efefef;  
+}
+
+

@@ -10,7 +10,9 @@ function shuffleArray(array)
 }
 
 function Board(size){
-    this.scoreCompute = new ScoreCompute(size);
+    var lastQueenWin = document.getElementById("lastWin").checked;
+
+    this.scoreCompute = new ScoreCompute(size, lastQueenWin);
     this.size = size;
     this.board = [];
     this.legal = this.scoreCompute.legalMoves(this.board);
@@ -23,7 +25,12 @@ function Board(size){
             that.placeQueen(this, false);
             that.updateBoardStatus();
             if (that.legal.length == 0){
+                if (that.scoreCompute.lastWin){
                 that.showMessage(true);
+                }
+                else{
+                that.showMessage(false);
+                }
             }
             else{
                 that.computerMove(false);
@@ -53,10 +60,9 @@ function Board(size){
 
     this.setup();
 
-    if (!document.getElementById("form").children[0].checked){
+    if (!document.getElementById("firstMove").checked){
       that.computerMove(true);
     }
-
 
 }
 
@@ -120,7 +126,12 @@ Board.prototype.computerMove = function(random){
         this.updateBoardStatus();
         this.computerTurn = false;
         if (this.legal.length == 0){
-            this.showMessage(false);
+            if(this.scoreCompute.lastWin){
+                this.showMessage(false);
+            }
+            else{
+                this.showMessage(true);
+            }
         }
     }
     else{
@@ -132,7 +143,12 @@ Board.prototype.computerMove = function(random){
         this.updateBoardStatus();
         this.computerTurn = false;
         if (this.legal.length == 0){
-            this.showMessage(false);
+            if(this.scoreCompute.lastWin){
+                this.showMessage(false);
+            }
+            else{
+                this.showMessage(true);
+            }
         }
     }
 }
@@ -141,7 +157,6 @@ Board.prototype.setup = function(){
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
     var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
     var pixel = Math.min(w, h)- 50;
-    console.log(pixel);
     var boardDiv = document.getElementById("mainChessBoard");
     boardDiv.style.height = pixel+"px";
     boardDiv.style.width = pixel+"px";
