@@ -97,6 +97,13 @@ input[type=radio]:not(old):checked + label{
   background-position : 0 -48px;
 }
 
+.normalbox {
+    width: 150px;
+    height: 25px;
+    margin: 10px;
+    border: 3px solid #efefef;  
+}
+
 .floating-box {
     display: inline-block;
     width: 150px;
@@ -105,4 +112,6 @@ input[type=radio]:not(old):checked + label{
     border: 3px solid #efefef;  
 }
 
-
+select {
+    width: 60px;
+}
