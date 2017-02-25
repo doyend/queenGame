@@ -184,10 +184,11 @@ Board.prototype.setup = function(){
     }
 }
 
-var boardSize = parseInt(document.getElementById("boardSize").value);
-var board = new Board(boardSize);
+//var boardSize = parseInt(document.getElementById("boardSize").value);
+//var board = new Board(boardSize);
 function restart(){
     var boardSize = parseInt(document.getElementById("boardSize").value);
     board = new Board(boardSize);
 }
 document.getElementById("button").addEventListener("click", restart);
+restart();
