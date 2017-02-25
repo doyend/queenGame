@@ -46,7 +46,9 @@ function Board(size){
 
     this.onMouseOutHandler = function(e){
         var position = parseInt(this.id);
-        this.style.backgroundColor = parseInt((position / boardSize) + position) % 2 == 0 ? '#ababab' : 'white';
+        var x = parseInt(position / that.size);
+        var y = position - x * that.size;
+        this.style.backgroundColor = parseInt(x % 2 + y) % 2 == 0 ? '#ababab' : 'white';
     };
 
     this.setup();
@@ -154,7 +156,9 @@ Board.prototype.setup = function(){
     for (var i=0; i< this.size * this.size; i++){
         var divEle = (document.createElement("div"));
         divEle.className += "box";
-        divEle.style.backgroundColor = parseInt((i / this.size) + i) % 2 == 0 ? '#ababab' : 'white';
+        var x = parseInt(i / this.size);
+        var y = i - x * this.size;
+        divEle.style.backgroundColor = parseInt(x % 2 + y) % 2 == 0 ? '#ababab' : 'white';
         divEle.style.height = boxSize+"px";
         divEle.style.width = boxSize+"px";
         divEle.id = i;
@@ -165,9 +169,10 @@ Board.prototype.setup = function(){
     }
 }
 
-var boardSize = 8;
+var boardSize = parseInt(document.getElementById("boardSize").value);
 var board = new Board(boardSize);
 function restart(){
+    var boardSize = parseInt(document.getElementById("boardSize").value);
     board = new Board(boardSize);
 }
 document.getElementById("button").addEventListener("click", restart);
