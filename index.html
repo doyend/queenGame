@@ -84,14 +84,14 @@
 <script src="js/work.js"></script>
 <script src="js/game.js"></script>
 <div class="footer">
-    <a id="instruction" class="button" href="#popup1">Instruction</a>
+    <a id="instruction" class="button" href="javascript:popup();">Instruction</a>
     <a id="translate" class="button" href="javascript:translate();">中文</a>
     <p>Send your comments to <a href="mailto:doyend@gmail.com">doyend@gmail.com</a>.</p>
 </div>
-<div id="popup1" class="overlay">
-    <div class="popup">
+<div id="popup1" class="modal">
+    <div class="modal-content">
     <h2>Instructions</h2>
-    <a class="close" href="#">&times;</a>
+    <a class="close" href="javascript:closePopup();">&times;</a>
     <ul>
         <li> Each player places a Queen on the board in turn.</li>
         <li> A chess Queen can threaten horizontally, vertically and diagonally.</li>

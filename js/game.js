@@ -241,9 +241,17 @@ function translate(){
     lis[2].innerText = "所有在棋盘上面都女皇都不能互相威胁";
     lis[3].innerText = "能放下最后一个女皇的玩家胜或者输，取决游戏设置";
     document.getElementsByTagName("h2")[0].innerText = "说明";
-
 }
 
+function popup(){
+    var modal = document.getElementById('popup1');
+    modal.style.display = "block";
+}
+
+function closePopup(){
+    var modal = document.getElementById('popup1');
+    modal.style.display = "none";
+}
 document.getElementById("button").addEventListener("click", restart);
 document.getElementById("hint").addEventListener("click", showHint);
 restart();
