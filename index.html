@@ -6,10 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>Last Queen Game</title>
   <link rel="stylesheet" href="css/chessboard.css" />
+  <link rel="stylesheet" href="css/popup.css" />
+
 </head>
 <body>
 <div id="mainChessBoard">
 </div>
+<!--
 <div class="radio">
     <div class="floating-box">
         <input id="firstMove" type="checkbox" name="checkbox" value="1" checked="checked"><label for="firstMove"><span>Black First</span></label>
@@ -18,6 +21,50 @@
         <input id="lastWin" type="checkbox" name="checkbox" value="1" checked="checked"><label for="lastWin"><span>Last Queen Win</span></label>
     </div>
 </div> 
+-->
+<table>
+    <tr>
+        <td>
+        <input id="firstMove" type="checkbox" name="checkbox" value="1" checked="checked"><label for="firstMove"><span>Black First</span></label>
+        </td>
+        <td>
+        <input id="lastWin" type="checkbox" name="checkbox" value="1" checked="checked"><label for="lastWin"><span>Last Queen Win</span></label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <label for="boardSize"><span>Board Size</span></label>
+        </td>
+        <td>
+            <select name="boardSize" id="boardSize">
+                <option value="8">8</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="btn" id="button"> Restart </div>
+        </td>
+        <td>
+            <div class="btn" id="hint"> Hint </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <div id="message"></div>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>
+
+<!--
 <div class="normalbox">
 <label for="boardSize"><span>Board Size</span></label>
 <select name="boardSize" id="boardSize">
@@ -31,13 +78,25 @@
 </select>
 </div>
 <div id="message"></div>
-<div class="btn" id="button"> Restart </div>
-<div class="btn" id="hint"> Hint </div>
+-->
+
 <script src="js/work.js"></script>
 <script src="js/game.js"></script>
 <div class="footer">
-    <p> Each player places a Queen on the board in turn. </br> A chess Queen can threaten horizontally, vertically and diagonally. </br> Queens can only be dropped in the box that no queen is threatening each other on the board. </br> Depending on the setting, who places the last Queen win/loss the game.</p>
+    <a class="button" href="#popup1">Instruction</a>
     <p>Send your comments to <a href="mailto:doyend@gmail.com">doyend@gmail.com</a>.</p>
+</div>
+<div id="popup1" class="overlay">
+    <div class="popup">
+    <h2>Instructions</h2>
+    <a class="close" href="#">&times;</a>
+    <ul>
+        <li> Each player places a Queen on the board in turn.</li>
+        <li> A chess Queen can threaten horizontally, vertically and diagonally.</li>
+        <li> Queens can only be dropped in the box that no queen is threatening each other on the board.</li>
+        <li> Depending on the setting, who places the last Queen win/loss the game.</li>
+    </ul>
+    </div>
 </div>
 </body>
 </html>
