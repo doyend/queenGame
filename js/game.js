@@ -254,4 +254,14 @@ function closePopup(){
 }
 document.getElementById("button").addEventListener("click", restart);
 document.getElementById("hint").addEventListener("click", showHint);
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    var modal = document.getElementById('popup1');
+    if (event.target == modal) {
+	    modal.style.display = "none";
+    }
+}
 restart();
+
