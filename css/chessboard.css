@@ -4,15 +4,30 @@
     border:1px solid black;
 }
 
+#message {
+  position:relative;
+  width:200px;
+  height:200px;
+  float:left;
+}
+
+
 .box {
+    position:relative;
     width:40px;
     height:40px;
     float:left;
 }
 
 img {
+    position:absolute;
     max-width: 80%;
     max-height: 80%;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .btn {
