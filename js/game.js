@@ -223,7 +223,7 @@ function showHint(){
     for(var k = 0; k < numLegals; k++){
         var tDiv = that.getDiv(board.legal[k]);
         tDiv.style.backgroundColor = "#00BFFF";
-        setTimeout(recover, 500, tDiv);
+        setTimeout(recover, 1000, tDiv);
     }
 
 
