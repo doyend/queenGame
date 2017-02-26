@@ -114,7 +114,6 @@ Board.prototype.showMessage = function(win){
 }
 
 Board.prototype.finishGame = function(win){
-    this.board = [];
     var root = document.getElementById("mainChessBoard");
     var children = root.children;
     var length = children.length;
@@ -130,7 +129,6 @@ Board.prototype.finishGame = function(win){
             }
         }
     }
-    this.legal = this.scoreCompute.legalMoves(this.board);
 }
 
 
