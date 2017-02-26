@@ -33,9 +33,12 @@ function Board(size){
             if (that.legal.length == 0){
                 if (that.scoreCompute.lastWin){
                 that.showMessage(true);
+                that.finishGame(true);
+
                 }
                 else{
                 that.showMessage(false);
+                that.finishGame(false);
                 }
             }
             else{
@@ -101,14 +104,35 @@ Board.prototype.showMessage = function(win){
     var div = document.getElementById("message");
     var boardDiv = document.getElementById("mainChessBoard");
     if (win){
-        div.innerHTML="<img src='images/win.png'/>";
+        div.innerHTML="<img src='images/wingame.png'/>";
         boardDiv.style.borderColor = "green";
     }
     else{
-        div.innerHTML="<img src='images/loss.png'/>";
+        div.innerHTML="<img src='images/gamelost.jpeg'/>";
         boardDiv.style.borderColor = "red";
     }
 }
+
+Board.prototype.finishGame = function(win){
+    this.board = [];
+    var root = document.getElementById("mainChessBoard");
+    var children = root.children;
+    var length = children.length;
+    for  (var i=0; i< length; i++){
+        if (children[i].innerHTML != ""){
+            if ( children[i].firstChild.src.endsWith("black.png")){
+                if(win){
+                  children[i].innerHTML="<img src='images/win.png'/>";
+                }
+                else{
+                  children[i].innerHTML="<img src='images/loss.png'/>";
+                }
+            }
+        }
+    }
+    this.legal = this.scoreCompute.legalMoves(this.board);
+}
+
 
 Board.prototype.updateBoardStatus = function(){
     this.board = [];
@@ -146,9 +170,11 @@ Board.prototype.computerMove = function(random){
         if (this.legal.length == 0){
             if(this.scoreCompute.lastWin){
                 this.showMessage(false);
+                this.finishGame(false);
             }
             else{
                 this.showMessage(true);
+                this.finishGame(true);
             }
         }
     }
@@ -163,9 +189,11 @@ Board.prototype.computerMove = function(random){
         if (this.legal.length == 0){
             if(this.scoreCompute.lastWin){
                 this.showMessage(false);
+                this.finishGame(false);
             }
             else{
                 this.showMessage(true);
+                this.finishGame(true);
             }
         }
     }
