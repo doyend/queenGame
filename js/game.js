@@ -206,9 +206,29 @@ Board.prototype.setup = function(){
 
 //var boardSize = parseInt(document.getElementById("boardSize").value);
 //var board = new Board(boardSize);
+var board;
 function restart(){
     var boardSize = parseInt(document.getElementById("boardSize").value);
     board = new Board(boardSize);
 }
+
+function showHint(){
+    function recover(div){
+        var position = parseInt(div.id);
+        var x = parseInt(position / that.size);
+        var y = position - x * that.size;
+        div.style.backgroundColor = parseInt(x % 2 + y) % 2 == 0 ? '#ababab' : 'white';
+    }
+    var numLegals = board.legal.length;
+    for(var k = 0; k < numLegals; k++){
+        var tDiv = that.getDiv(board.legal[k]);
+        tDiv.style.backgroundColor = "#00BFFF";
+        setTimeout(recover, 500, tDiv);
+    }
+
+
+}
+
 document.getElementById("button").addEventListener("click", restart);
+document.getElementById("hint").addEventListener("click", showHint);
 restart();
