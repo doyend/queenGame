@@ -225,7 +225,22 @@ function showHint(){
         tDiv.style.backgroundColor = "#00BFFF";
         setTimeout(recover, 1000, tDiv);
     }
+}
 
+function translate(){
+    var spans = document.getElementsByTagName("span");
+    spans[0].innerText = "黑皇后先手";
+    spans[1].innerText = "最后一个皇后赢";
+    spans[2].innerText = "棋盘大小";
+    var div = document.getElementById("button").innerText = "重新玩";
+    document.getElementById("hint").innerText = "提示";
+    document.getElementById("instruction").innerText = "说明";
+    var lis = document.getElementsByTagName("li");
+    lis[0].innerText = "玩家依次在棋盘放下女皇";
+    lis[1].innerText = "国际象棋女皇可以吃水平，垂直和对角线上的棋子";
+    lis[2].innerText = "所有在棋盘上面都女皇都不能互相威胁";
+    lis[3].innerText = "能放下最后一个女皇的玩家胜或者输，取决游戏设置";
+    document.getElementsByTagName("h2")[0].innerText = "说明";
 
 }
 
