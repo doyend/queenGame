@@ -96,6 +96,39 @@ ScoreCompute.prototype.quickscore = function(queens, maxPlayer){
         return this.score2(legals, -1, maxPlayer);
 }
 
+ScoreCompute.prototype.threatenedBy = function(board, queen){
+    var output = [];
+    var total = board.length;
+
+    var x = Math.floor(queen/this.boardSize);
+    var y = queen - x * this.boardSize;
+    var c0 = y - x;
+    var c1 = y + x;
+    for(var i = 0 ; i < total; i++) {
+        var potential = board[i];
+        var pX = Math.floor(potential/this.boardSize);
+        var pY = potential - pX * this.boardSize;
+        if ( pX == x ){
+            output.push(potential);
+            continue;
+        } 
+        if ( pY == y ){
+            output.push(potential);
+            continue;
+        }
+        if (pY - pX == c0){
+            output.push(potential);
+            continue;
+        }
+        if (pX + pY == c1) {
+            output.push(potential);
+            continue;
+        }
+    }
+    return output;
+}
+
+
 
 ScoreCompute.prototype.legalMoves2 = function(oldLegals, queen){
     var output = [];

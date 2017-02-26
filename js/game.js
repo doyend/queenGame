@@ -21,6 +21,12 @@ function Board(size){
     that = this;
     this.clickHandler =  function(e){
         var position = parseInt(this.id);
+        function recover(div){
+            var position = parseInt(div.id);
+            var x = parseInt(position / that.size);
+            var y = position - x * that.size;
+            div.style.backgroundColor = parseInt(x % 2 + y) % 2 == 0 ? '#ababab' : 'white';
+        }
         if (!this.computerTurn && that.legal.indexOf(position) >= 0) {
             that.placeQueen(this, false);
             that.updateBoardStatus();
@@ -34,6 +40,16 @@ function Board(size){
             }
             else{
                 that.computerMove(false);
+            }
+        }
+        else if (!this.computerTurn){
+            var queen = parseInt(this.id);
+            var threatens = that.scoreCompute.threatenedBy(that.board, queen);
+            var numThreatens = threatens.length;
+            for(var k = 0; k < numThreatens; k++){
+                var tDiv = that.getDiv(threatens[k]);
+                tDiv.style.backgroundColor = "red";
+                setTimeout(recover, 500, tDiv);
             }
         }
     };
@@ -82,13 +98,15 @@ Board.prototype.placeQueen = function(div, computer){
 }
 
 Board.prototype.showMessage = function(win){
-    div = document.getElementById("message");
+    var div = document.getElementById("message");
+    var boardDiv = document.getElementById("mainChessBoard");
     if (win){
         div.innerHTML="<img src='images/win.png'/>";
-
+        boardDiv.style.borderColor = "green";
     }
     else{
         div.innerHTML="<img src='images/loss.png'/>";
+        boardDiv.style.borderColor = "red";
     }
 }
 
@@ -161,6 +179,7 @@ Board.prototype.setup = function(){
     var boardDiv = document.getElementById("mainChessBoard");
     boardDiv.style.height = pixel+"px";
     boardDiv.style.width = pixel+"px";
+    boardDiv.style.borderColor = "black";
     var boxSize = parseInt(pixel / this.size);
     while (boardDiv.firstChild) {
         boardDiv.removeChild(boardDiv.firstChild);
