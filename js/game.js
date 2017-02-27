@@ -199,8 +199,17 @@ Board.prototype.computerMove = function(random){
 
 Board.prototype.setup = function(){
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight - 280, (window.innerHeight -280) || 0);
-    var pixel = Math.min(w, h)- 50;
+    var h = Math.max(document.documentElement.clientHeight, (window.innerHeight) || 0);
+    var pixel = 0;
+    if (w - h > 300){
+        // land scape
+        pixel = h - 150;
+    }
+    else{
+        // portait
+        pixel = Math.min(h - 280, w - 50);
+    }
+    //var pixel = Math.min(w, h)- 50;
     //pixel = Math.min(pixel, 900);
     var boardDiv = document.getElementById("mainChessBoard");
     boardDiv.style.height = pixel+"px";

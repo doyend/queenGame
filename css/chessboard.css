@@ -2,6 +2,7 @@
     width:320px;
     height:320px;
     border:5px solid black;
+    float:left;
 }
 
 #message {
@@ -15,6 +16,10 @@
     position:relative;
     width:40px;
     height:40px;
+    float:left;
+}
+
+table {
     float:left;
 }
 
